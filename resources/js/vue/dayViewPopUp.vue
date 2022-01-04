@@ -2,7 +2,7 @@
     <div class="notifContainer">
         <div class="notif">
             <button class="closeBtn" @click.stop="$emit('close')">Close</button>
-            <form class="form" @submit.prevent="addDay()">
+            <form class="form" @submit.prevent="editDay(id)">
                 <label for="weight">Weight</label>
                 <input type="text" v-model="day.weight" required />
                 <div class="alert" v-if="errors && errors.weight">
@@ -13,35 +13,34 @@
                 <div class="alert" v-if="errors && errors.calories">
                     {{ errors.calories[0] }}
                 </div>
-                {{ timezone }}
-                <button class="addBtn">Add</button>
+                <button class="editBtn">Edit</button>
             </form>
+            <div class="time">{{ time }}</div>
         </div>
-
-        <!-- <day-view></day-view> -->
     </div>
 </template>
 <script>
 export default {
+    props: ["weight", "calories", "time", "id"],
     data() {
         return {
             day: {
-                user_id: this.user_id,
+                weight: this.weight,
+                calories: this.calories,
+                id: this.id,
             },
             errors: {},
-            timezone: moment.tz.guess(),
         };
     },
-
     methods: {
-        addDay() {
+        editDay(id) {
             axios
-                .post("api/table/store", this.day)
+                .put("api/table/" + id, this.day)
                 .then((response) => {
                     this.day = {};
-                    if (response.status == 201) {
+                    if (response.status == 200) {
                         window.location.reload();
-                        // this.$emit("close");
+                        this.$emit("close");
                     }
                 })
                 .catch((error) => {
@@ -52,7 +51,6 @@ export default {
                 });
         },
     },
-    props: ["user_id"],
 };
 </script>
 
@@ -67,10 +65,11 @@ export default {
     border-radius: 1rem;
     text-align: right;
 }
-.addBtn {
+.editBtn {
     --tw-bg-opacity: 1;
     background-color: rgb(34 197 94 / var(--tw-bg-opacity));
     margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
     padding: 0.375rem;
     border-radius: 0.25rem;
 }
@@ -97,5 +96,9 @@ export default {
 }
 .alert {
     color: red;
+}
+.time {
+    font-size: 0.875rem /* 14px */;
+    line-height: 1.25rem /* 20px */;
 }
 </style>

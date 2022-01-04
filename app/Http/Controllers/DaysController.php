@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Day;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,34 @@ class DaysController extends Controller
     public function index()
     {
 
+        $days = Day::all();
+
         $user = User::find(auth()->id());
+
+        foreach ($days as $day) {
+            if (is_null($day->created_timezone)) {
+
+                // $day->created_at = Carbon::parse($day->created_at)->timezone($user->timezone);
+                // $newDay = Carbon::createFromFormat('Y-m-d H:i:s', $day->created_at, $user->timezone)->setTimezone($user->timezone);
+
+                //to keep UTC time in created do this
+                $time = Carbon::parse($day->created_at)->timezone($user->timezone);
+                $newDay = Carbon::createFromFormat('Y-m-d H:i:s', $time, $user->timezone)->setTimezone($user->timezone);
+
+                $day->created_timezone = $newDay;
+                $day->save();
+            }
+
+
+            // $day->created_at = Carbon::parse($day->created_at)->timezone($user->timezone);
+            // $newDay = Carbon::createFromFormat('Y-m-d H:i:s', $day->created_at, $user->timezone)->setTimezone($user->timezone);
+            // ddd($newDay);
+            // ddd($day->created_at->timestamp);
+            // ddd($day->created_at->tzName);
+
+            // $day->save();
+        }
+
 
 
         $links = Day::where('user_id', auth()->id())->paginate(27);
@@ -38,9 +66,19 @@ class DaysController extends Controller
             return $day->calories;
         });
 
+        //Created_at function
+        $createdTime = Day::where('user_id', auth()->id())->paginate(28)->map(function ($day) {
+            return $day->created_timezone;
+        });
+
+        $id = Day::where('user_id', auth()->id())->paginate(28)->map(function ($day) {
+            return $day->id;
+        });
+
         $avgCal = $calories->chunk(7)->all();
 
-        return view('table-show', ['weight' => $weight, 'links' => $links, 'avgWeight' => $avgWeight, 'calories' => $calories, 'avgCal' => $avgCal,]);
+
+        return view('table-show', ['weight' => $weight, 'links' => $links, 'avgWeight' => $avgWeight, 'calories' => $calories, 'avgCal' => $avgCal, 'createdTime' => $createdTime, 'id' => $id]);
     }
 
     public function apiIndex()
@@ -66,7 +104,6 @@ class DaysController extends Controller
      */
     public function store(Request $request)
     {
-        // $day = new Day;
 
         $attributes = request()->validate([
             'weight' => 'required|numeric',
@@ -110,9 +147,12 @@ class DaysController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
+        $attributes = request()->validate([
+            'weight' => 'required|numeric',
+            'calories' => 'required|numeric',
+        ]);
         $day = Day::find($id);
-        $day->update($request->all());
+        $day->update($attributes);
         return $day;
     }
 

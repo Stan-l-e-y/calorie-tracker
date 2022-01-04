@@ -17,7 +17,8 @@ class CreateWeeksTable extends Migration
             $table->id();
             $table->double('avgWeight');
             $table->double('avgCalories');
-            $table->timestamps();
+            //$table->timestamps();
+            $table->timestampsTz();
         });
     }
 

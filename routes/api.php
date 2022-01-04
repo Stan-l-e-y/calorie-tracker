@@ -19,8 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/table-show', [DaysController::class, 'apiIndex']);
-// ->middleware(['auth'])->name('table-show');
+Route::get('/table-show', [DaysController::class, 'apiIndex'])->middleware(['auth'])->name('table-show');
 
 Route::prefix('/table')->group(function () {
     Route::post('/store', [DaysController::class, 'store']);

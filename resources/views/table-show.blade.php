@@ -8,7 +8,9 @@
             .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
             .tg .tg-0lax{text-align:left;vertical-align:top}
             </style>
-
+            <div>
+              <span x-data="{weed: false}"></span>
+            </div>
             <h1 
             class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8"
             >
@@ -29,9 +31,12 @@
               $week = $pageNum + (3 * $secondNum);
             @endphp
 
-
+              {{-- @foreach ($createdTime as $date)
+                {{ $date }}
+                <br>
+              @endforeach --}}
             <div class="flex" id="app" >
-              <table class="tg border-collapse relative border rounded-xl">
+              <table class="tg border-collapse relative border rounded-xl ">
               <thead class="">
                 <tr>
                   <th class="tg-0lax"></th>
@@ -51,9 +56,11 @@
                   @for ($x = 0; $x <= 6; $x++)
                   @if (!empty($weight[$x]) && !empty($calories[$x]))
                   <td class="">
-                    <div class="flex flex-col py-2 cursor-pointer hover:text-blue-500">
-                      <div class="mb-2">W: {{ $weight[$x] }}</div>
-                      <div>C: {{ $calories[$x] }}</div>
+                    <div class=" cursor-pointer hover:text-blue-500">
+                      <div class="mb-2">
+                         <day-view :weight="{{ $weight[$x] }}" :calories="{{ $calories[$x] }}" time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                         </day-view>    
+                      </div>
                     </div>
                   </td>
                   @elseif(!empty($weight[$x -1 ] ))

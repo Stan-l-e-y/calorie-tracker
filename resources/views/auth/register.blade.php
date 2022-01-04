@@ -12,6 +12,7 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
+            <input type="hidden" name="timezone" id="timezone">
             <!-- Name -->
             <div>
                 <x-label for="name" :value="__('Name')" />
@@ -55,5 +56,7 @@
                 </x-button>
             </div>
         </form>
+        
     </x-auth-card>
 </x-guest-layout>
+

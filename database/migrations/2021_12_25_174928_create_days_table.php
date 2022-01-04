@@ -18,7 +18,8 @@ class CreateDaysTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->double('weight')->nullable();
             $table->double('calories')->nullable();
-            $table->timestamps();
+            $table->timestampsTz();
+            $table->timestampTz('created_timezone')->nullable();
         });
     }
 

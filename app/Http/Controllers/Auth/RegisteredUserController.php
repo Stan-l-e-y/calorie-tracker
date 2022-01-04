@@ -39,10 +39,14 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $timezone = $request->timezone;
+
         $user = User::create([
+            'timezone' => $timezone,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+
         ]);
 
         event(new Registered($user));
