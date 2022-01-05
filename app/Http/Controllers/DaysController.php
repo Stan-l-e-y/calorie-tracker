@@ -17,10 +17,12 @@ class DaysController extends Controller
      */
     public function index()
     {
-
-        $days = Day::all();
-
         $user = User::find(auth()->id());
+        // ddd(Carbon::today()->timezone($user->timezone));
+
+        $todaysEntry = DaysController::isEntryMade($user->id, $user->timezone);
+
+        $days = Day::where('user_id', auth()->id())->paginate(28);
 
         foreach ($days as $day) {
             if (is_null($day->created_timezone)) {
@@ -78,7 +80,7 @@ class DaysController extends Controller
         $avgCal = $calories->chunk(7)->all();
 
 
-        return view('table-show', ['weight' => $weight, 'links' => $links, 'avgWeight' => $avgWeight, 'calories' => $calories, 'avgCal' => $avgCal, 'createdTime' => $createdTime, 'id' => $id]);
+        return view('table-show', ['weight' => $weight, 'links' => $links, 'avgWeight' => $avgWeight, 'calories' => $calories, 'avgCal' => $avgCal, 'createdTime' => $createdTime, 'id' => $id, 'todaysEntry' => $todaysEntry, 'days' => $days]);
     }
 
     public function apiIndex()
@@ -106,8 +108,8 @@ class DaysController extends Controller
     {
 
         $attributes = request()->validate([
-            'weight' => 'required|numeric',
-            'calories' => 'required|numeric',
+            'weight' => 'nullable',
+            'calories' => 'nullable',
             'user_id' => 'required'
         ]);
 
@@ -148,8 +150,8 @@ class DaysController extends Controller
     public function update(Request $request, $id)
     {
         $attributes = request()->validate([
-            'weight' => 'required|numeric',
-            'calories' => 'required|numeric',
+            'weight' => 'nullable',
+            'calories' => 'nullable',
         ]);
         $day = Day::find($id);
         $day->update($attributes);
@@ -184,5 +186,11 @@ class DaysController extends Controller
         // < -15 && 35
         // < 35 is concerning
         //
+    }
+
+    public static function isEntryMade($userID, $timezone)
+    {
+        $day = Day::where('user_id', $userID)->whereDate('created_timezone', Carbon::now('UTC')->setTimezone($timezone))->get();
+        return $day;
     }
 }

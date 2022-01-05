@@ -12,7 +12,8 @@
         <add-day-form
             :user_id="user_id"
             v-if="showModal"
-            @close="showModal = false"
+            @close="(showModal = false), weed()"
+            @reload="$emit('reload')"
         />
     </div>
 </template>
@@ -30,6 +31,14 @@ export default {
         };
     },
     props: ["user_id"],
+    methods: {
+        weed() {
+            // window.history.go();
+            // location.reload();
+            location.reload();
+            location.reload();
+        },
+    },
 };
 </script>
 

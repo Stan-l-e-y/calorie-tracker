@@ -17,6 +17,6 @@ class DatabaseSeeder extends Seeder
     {
         $user = User::factory()->create();
 
-        Day::factory(8)->create();
+        Day::factory(29)->create();
     }
 }

@@ -4,12 +4,12 @@
             <button class="closeBtn" @click.stop="$emit('close')">Close</button>
             <form class="form" @submit.prevent="addDay()">
                 <label for="weight">Weight</label>
-                <input type="text" v-model="day.weight" required />
+                <input type="text" v-model="day.weight" />
                 <div class="alert" v-if="errors && errors.weight">
                     {{ errors.weight[0] }}
                 </div>
                 <label for="weight">Calories</label>
-                <input type="text" v-model="day.calories" required />
+                <input type="text" v-model="day.calories" />
                 <div class="alert" v-if="errors && errors.calories">
                     {{ errors.calories[0] }}
                 </div>
@@ -40,8 +40,9 @@ export default {
                 .then((response) => {
                     this.day = {};
                     if (response.status == 201) {
+                        this.$emit("close");
+                        this.$emit("reload");
                         window.location.reload();
-                        // this.$emit("close");
                     }
                 })
                 .catch((error) => {

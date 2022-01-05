@@ -1,15 +1,20 @@
 <template>
     <div
-        class="container"
         :class="[
-            isActive ? 'active' : 'inactive',
+            grey ? 'active' : 'inactive',
             'plusContainer',
             showModal ? 'cursor' : '',
         ]"
         @click="showModal = true"
     >
-        <div class="top">W: {{ weight }}</div>
-        <div>C: {{ calories }}</div>
+        <div class="top" v-show="weight">W: {{ weight }}</div>
+        <div v-show="calories">C: {{ calories }}</div>
+        <font-awesome-icon
+            v-show="grey"
+            style="color: white"
+            class="fa-sm"
+            icon="plus"
+        />
 
         <day-view-pop-up
             :weight="weight"
@@ -24,7 +29,7 @@
 <script>
 import dayViewPopUp from "./dayViewPopUp.vue";
 export default {
-    props: ["weight", "calories", "time", "id"],
+    props: ["weight", "calories", "time", "id", "grey"],
     data() {
         return {
             showModal: false,
@@ -38,7 +43,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.plusContainer {
     display: flex;
     flex-direction: column;
     padding-top: 0.5rem;
@@ -50,5 +55,14 @@ export default {
 .cursor {
     cursor: default;
     color: white;
+}
+.active {
+    --tw-bg-opacity: 1;
+    background-color: gray;
+    padding: 0.375rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.25rem;
 }
 </style>

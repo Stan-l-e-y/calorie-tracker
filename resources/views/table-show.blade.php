@@ -30,7 +30,7 @@
               $secondNum = $pageNum - 1;
               $week = $pageNum + (3 * $secondNum);
             @endphp
-
+            {{-- {{ ddd(empty($todaysEntry[0])) }} --}}
               {{-- @foreach ($createdTime as $date)
                 {{ $date }}
                 <br>
@@ -54,27 +54,41 @@
                 <tr class="">
                   <td class="font-bold">Week {{ $week }}</td>
                   @for ($x = 0; $x <= 6; $x++)
-                  @if (!empty($weight[$x]) && !empty($calories[$x]))
+                  @if (!empty($days[$x]))
                   <td class="">
                     <div class=" cursor-pointer hover:text-blue-500">
                       <div class="mb-2">
-                         <day-view :weight="{{ $weight[$x] }}" :calories="{{ $calories[$x] }}" time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
-                         </day-view>    
+                        @if ( !empty($weight[$x]) && !empty($calories[$x]))
+                          <day-view :weight="{{ $weight[$x] }}" :calories="{{ $calories[$x] }}" time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                          </day-view>  
+                        @elseif (!empty($weight[$x]))
+                        <day-view :weight="{{ $weight[$x] }}"  time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                        </day-view>  
+                        @elseif (!empty($calories[$x]))
+                        <day-view :calories="{{ $calories[$x] }}" time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                        </day-view>  
+                        @else
+                        <div class=" flex justify-center ">
+                          <day-view :grey="true"  time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                          </day-view>
+                        </div> 
+                        @endif
+                  
                       </div>
                     </div>
                   </td>
-                  @elseif(!empty($weight[$x -1 ] ))
+                  @elseif(!empty($days[$x -1 ])  && empty($todaysEntry[0]))
                   <td class="">
                     <div class=" flex justify-center " >
                       
-                      <app :user_id="{{ auth()->id() }}" class="cursor-pointer"></app>
+                      <app :user_id="{{ auth()->id() }}" @reload="weed()" class="cursor-pointer"></app>
                     </div>
                   </td>
-                  @elseif($x == 0 && empty($weight[$x]))
+                  @elseif($x == 0 && empty($days[$x]) && empty($todaysEntry[0]))
                   <td class="">
                     <div class=" flex justify-center " >
                       
-                      <app :user_id="{{ auth()->id() }}" class="cursor-pointer"></app>
+                      <app :user_id="{{ auth()->id() }}" @reload="weed()" class="cursor-pointer"></app>
                     </div>
                   </td>
                   @else
@@ -101,15 +115,32 @@
                 <tr>
                   <td class="font-bold">Week {{ $week + 1}}</td>
                   @for ($x = 7; $x <= 13; $x++)
-                  @if (!empty($weight[$x]))
+                  @if (!empty($days[$x]))
                   <td class=" ">
 
-                    <div class="flex flex-col py-2 cursor-pointer hover:text-blue-500">
-                      <div class="mb-2">W: {{ $weight[$x] }}</div>
-                      <div>C: {{ $calories[$x] }}</div>
+                    <div class="cursor-pointer hover:text-blue-500">
+                      <div class="mb-2">
+
+                        @if ( !empty($weight[$x]) && !empty($calories[$x]))
+                          <day-view :weight="{{ $weight[$x] }}" :calories="{{ $calories[$x] }}" time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                          </day-view>  
+                        @elseif (!empty($weight[$x]))
+                        <day-view :weight="{{ $weight[$x] }}"  time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                        </day-view>  
+                        @elseif (!empty($calories[$x]))
+                        <day-view :calories="{{ $calories[$x] }}" time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                        </day-view>  
+                        @else
+                        <div class=" flex justify-center ">
+                          <day-view :grey="true"  time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                          </day-view>
+                        </div>
+                        @endif
+                      </div>
+
                     </div>
                   </td>
-                  @elseif(!empty($weight[$x -1 ] ))
+                  @elseif(!empty($days[$x -1 ]) && empty($todaysEntry[0]))
                   <td class="">
                     <div class=" flex justify-center " >
                       
@@ -142,14 +173,30 @@
                 <tr>
                   <td class="font-bold">Week {{ $week + 2}}</td>
                   @for ($x = 14; $x <= 20; $x++)
-                  @if (!empty($weight[$x]))
+                  @if (!empty($days[$x]))
                   <td class=" ">
                     <div class="flex flex-col py-2 cursor-pointer hover:text-blue-500">
-                      <div class="mb-2">W: {{ $weight[$x] }}</div>
-                      <div>C: {{ $calories[$x] }}</div>
+                      <div class="mb-2">
+                        @if ( !empty($weight[$x]) && !empty($calories[$x]))
+                          <day-view :weight="{{ $weight[$x] }}" :calories="{{ $calories[$x] }}" time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                          </day-view>  
+                        @elseif (!empty($weight[$x]))
+                        <day-view :weight="{{ $weight[$x] }}"  time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                        </day-view>  
+                        @elseif (!empty($calories[$x]))
+                        <day-view :calories="{{ $calories[$x] }}" time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                        </day-view>  
+                        @else
+                        <div class=" flex justify-center ">
+                          <day-view :grey="true"  time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                          </day-view>
+                        </div>
+                        @endif
+                      </div>
+
                     </div>
                   </td>
-                  @elseif(!empty($weight[$x -1 ] ))
+                  @elseif(!empty($days[$x -1 ]) && empty($todaysEntry[0]))
                   <td class="">
                     <div class=" flex justify-center " >
                       
@@ -180,14 +227,30 @@
                 <tr class="">
                   <td class="font-bold">Week {{ $week + 3}}</td>
                   @for ($x = 21; $x <= 27; $x++)
-                  @if (!empty($weight[$x]))
+                  @if (!empty($days[$x]))
                   <td class=" ">
                     <div class="flex flex-col py-2 cursor-pointer hover:text-blue-500">
-                      <div class="mb-2">W: {{ $weight[$x] }}</div>
-                      <div>C: {{ $calories[$x] }}</div>
+                      <div class="mb-2">
+                        @if ( !empty($weight[$x]) && !empty($calories[$x]))
+                          <day-view :weight="{{ $weight[$x] }}" :calories="{{ $calories[$x] }}" time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                          </day-view>  
+                        @elseif (!empty($weight[$x]))
+                        <day-view :weight="{{ $weight[$x] }}"  time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                        </day-view>  
+                        @elseif (!empty($calories[$x]))
+                        <day-view :calories="{{ $calories[$x] }}" time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                        </day-view>  
+                        @else
+                        <div class=" flex justify-center ">
+                          <day-view :grey="true"  time="{{ $createdTime[$x] }}" :id="{{ $id[$x] }}" >
+                          </day-view>
+                        </div>
+                        @endif
+                      </div>
+
                     </div>
                   </td>
-                  @elseif(!empty($weight[$x -1 ] ))
+                  @elseif(!empty($days[$x -1 ]) && empty($todaysEntry[0]))
                   <td class="">
                     <div class=" flex justify-center " >
                       
@@ -216,35 +279,7 @@
                   </td>
 
                 </tr>
-                  {{-- {{ ddd($days) }} --}}
-                  {{-- <tr> --}}
-                    {{-- @for ($x = 0; $x <= 28; $x++)
-              
-                    @if (!empty($weight[$x]))
-                    <td class="tg-0lax">{{ $weight[$x] }}</td>
-                    @elseif (!($x == 6 || $x == 13 || $x == 20))
-                    <td class="tg-0lax"></td>
-                    @endif
-                    @if ($x == 6 || $x == 13 || $x == 20)
-                    <td class="tg-0lax"></td>
-                      <tr>
-              
-                    @endif
-                    @endfor --}}
-              
-              
-                    {{-- </tr> --}}
-              
-                {{-- <tr>
-                  <td class="tg-0lax">
-                  @foreach ($days as $day)
-                  {{ $day->weight }} --}}
-                  {{-- @if ($loop->index == 6)
-                  <td class="tg-0lax"></td>
-                  @endif --}}
-                  {{-- @endforeach
-                  </td>
-                </tr> --}}
+      
               
 
               </tbody>

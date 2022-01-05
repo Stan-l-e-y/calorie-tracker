@@ -15572,7 +15572,11 @@ __webpack_require__.r(__webpack_exports__);
         _this.day = {};
 
         if (response.status == 201) {
-          window.location.reload(); // this.$emit("close");
+          _this.$emit("close");
+
+          _this.$emit("reload");
+
+          window.location.reload();
         }
       })["catch"](function (error) {
         if (error.response.status == 422) {
@@ -15619,6 +15623,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -15630,7 +15635,15 @@ __webpack_require__.r(__webpack_exports__);
       isActive: true
     };
   },
-  props: ["user_id"]
+  props: ["user_id"],
+  methods: {
+    weed: function weed() {
+      // window.history.go();
+      // location.reload();
+      location.reload();
+      location.reload();
+    }
+  }
 });
 
 /***/ }),
@@ -15670,9 +15683,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["weight", "calories", "time", "id"],
+  props: ["weight", "calories", "time", "id", "grey"],
   data: function data() {
     return {
       showModal: false,
@@ -15738,9 +15756,11 @@ __webpack_require__.r(__webpack_exports__);
         _this.day = {};
 
         if (response.status == 200) {
-          window.location.reload();
-
           _this.$emit("close");
+
+          _this.$emit("reload");
+
+          window.location.reload();
         }
       })["catch"](function (error) {
         if (error.response.status == 422) {
@@ -15893,7 +15913,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.container[data-v-6a505c6c] {\r\n    display: flex;\r\n    flex-direction: column;\r\n    padding-top: 0.5rem;\r\n    padding-bottom: 0.5rem;\n}\n.top[data-v-6a505c6c] {\r\n    margin-bottom: 0.5rem;\n}\n.cursor[data-v-6a505c6c] {\r\n    cursor: default;\r\n    color: white;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.plusContainer[data-v-6a505c6c] {\r\n    display: flex;\r\n    flex-direction: column;\r\n    padding-top: 0.5rem;\r\n    padding-bottom: 0.5rem;\n}\n.top[data-v-6a505c6c] {\r\n    margin-bottom: 0.5rem;\n}\n.cursor[data-v-6a505c6c] {\r\n    cursor: default;\r\n    color: white;\n}\n.active[data-v-6a505c6c] {\r\n    --tw-bg-opacity: 1;\r\n    background-color: gray;\r\n    padding: 0.375rem;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    border-radius: 0.25rem;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -34221,7 +34241,7 @@ var render = function () {
                 expression: "day.weight",
               },
             ],
-            attrs: { type: "text", required: "" },
+            attrs: { type: "text" },
             domProps: { value: _vm.day.weight },
             on: {
               input: function ($event) {
@@ -34254,7 +34274,7 @@ var render = function () {
                 expression: "day.calories",
               },
             ],
-            attrs: { type: "text", required: "" },
+            attrs: { type: "text" },
             domProps: { value: _vm.day.calories },
             on: {
               input: function ($event) {
@@ -34331,7 +34351,10 @@ var render = function () {
             attrs: { user_id: _vm.user_id },
             on: {
               close: function ($event) {
-                _vm.showModal = false
+                ;(_vm.showModal = false), _vm.weed()
+              },
+              reload: function ($event) {
+                return _vm.$emit("reload")
               },
             },
           })
@@ -34366,9 +34389,8 @@ var render = function () {
   return _c(
     "div",
     {
-      staticClass: "container",
       class: [
-        _vm.isActive ? "active" : "inactive",
+        _vm.grey ? "active" : "inactive",
         "plusContainer",
         _vm.showModal ? "cursor" : "",
       ],
@@ -34379,9 +34401,50 @@ var render = function () {
       },
     },
     [
-      _c("div", { staticClass: "top" }, [_vm._v("W: " + _vm._s(_vm.weight))]),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.weight,
+              expression: "weight",
+            },
+          ],
+          staticClass: "top",
+        },
+        [_vm._v("W: " + _vm._s(_vm.weight))]
+      ),
       _vm._v(" "),
-      _c("div", [_vm._v("C: " + _vm._s(_vm.calories))]),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.calories,
+              expression: "calories",
+            },
+          ],
+        },
+        [_vm._v("C: " + _vm._s(_vm.calories))]
+      ),
+      _vm._v(" "),
+      _c("font-awesome-icon", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.grey,
+            expression: "grey",
+          },
+        ],
+        staticClass: "fa-sm",
+        staticStyle: { color: "white" },
+        attrs: { icon: "plus" },
+      }),
       _vm._v(" "),
       _vm.showModal
         ? _c("day-view-pop-up", {
@@ -34464,7 +34527,7 @@ var render = function () {
                 expression: "day.weight",
               },
             ],
-            attrs: { type: "text", required: "" },
+            attrs: { type: "text" },
             domProps: { value: _vm.day.weight },
             on: {
               input: function ($event) {
@@ -34497,7 +34560,7 @@ var render = function () {
                 expression: "day.calories",
               },
             ],
-            attrs: { type: "text", required: "" },
+            attrs: { type: "text" },
             domProps: { value: _vm.day.calories },
             on: {
               input: function ($event) {
