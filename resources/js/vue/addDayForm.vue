@@ -13,7 +13,7 @@
                 <div class="alert" v-if="errors && errors.calories">
                     {{ errors.calories[0] }}
                 </div>
-                {{ timezone }}
+
                 <button class="addBtn">Add</button>
             </form>
         </div>

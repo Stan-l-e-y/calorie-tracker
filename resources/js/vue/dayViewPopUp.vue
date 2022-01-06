@@ -65,6 +65,7 @@ export default {
     height: 100%;
     border-radius: 1rem;
     text-align: right;
+    color: black;
 }
 .editBtn {
     --tw-bg-opacity: 1;

@@ -17,19 +17,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
-        // $users = User::all();
+        $users = User::all();
 
-        // $schedule->call(function ($users) {
-        //     foreach ($users as $user) {
-        //         Day::create([
-        //             'weight' => 100,
-        //             'calories' => 200,
-        //             'user_id' => $user->id
-        //         ]);
-        //     }
-        // })->everyMinute();
-        $schedule->command('nullDay:daily')->everyMinute();
+
+        foreach ($users as $user) {
+            $timezone = $user->timezone;
+
+            $schedule->command('nullDay:daily')->timezone($timezone)->between('23:50', '23:58');
+        }
     }
 
     /**
