@@ -53,5 +53,4 @@
             </div>
         </form>
     </x-auth-card>
-    <div>weed</div>
 </x-guest-layout>
