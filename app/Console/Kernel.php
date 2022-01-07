@@ -17,16 +17,17 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $users = User::all();
+        $schedule->command('nullDay:daily')->between('8:22', '8:30');
+        // $users = User::all();
 
 
-        foreach ($users as $user) {
-            $timezone = $user->timezone;
+        // foreach ($users as $user) {
+        //     $timezone = $user->timezone;
 
-            // $schedule->command('nullDay:daily')->timezone($timezone)->everyMinute();
-            // $schedule->command('nullDay:daily')->timezone($timezone)->between('23:50', '23:58');
-            $schedule->command('nullDay:daily')->timezone($timezone)->between('15:53', '15:58');
-        }
+        //     // $schedule->command('nullDay:daily')->timezone($timezone)->everyMinute();
+        //     // $schedule->command('nullDay:daily')->timezone($timezone)->between('23:50', '23:58');
+        //     $schedule->command('nullDay:daily')->timezone($timezone)->between('15:53', '15:58');
+        // }
     }
 
     /**
