@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('nullDay:daily')->between('8:22', '8:30');
+        $schedule->command('nullDay:daily')->between('8:23', '8:30');
         // $users = User::all();
 
 
