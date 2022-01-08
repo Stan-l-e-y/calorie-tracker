@@ -62,7 +62,7 @@ export default {
     position: absolute;
     left: 50px;
     top: 25px;
-    background: #c4c4d3;
+    background: #c8c8cff8;
     width: 83%;
     height: 100%;
     border-radius: 1rem;

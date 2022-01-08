@@ -24,7 +24,6 @@ class Kernel extends ConsoleKernel
         foreach ($users as $user) {
             $timezone = $user->timezone;
 
-
             $schedule->command('nullDay:daily')->timezone($timezone)->between('23:50', '23:58');
         }
     }
