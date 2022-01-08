@@ -17,18 +17,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('nullDay:daily')->timezone('America/Toronto')->between('10:15', '10:20');
-        // $schedule->command('nullDay:daily')->everyMinute();
-        // $schedule->command('nullDay:daily')->everyMinute();
+
         $users = User::all();
 
 
         foreach ($users as $user) {
             $timezone = $user->timezone;
 
-            // $schedule->command('nullDay:daily')->timezone($timezone)->everyMinute();
-            // $schedule->command('nullDay:daily')->timezone($timezone)->between('23:50', '23:58');
-            $schedule->command('nullDay:daily')->timezone($timezone)->between('10:20', '10:30');
+
+            $schedule->command('nullDay:daily')->timezone($timezone)->between('23:50', '23:58');
         }
     }
 
