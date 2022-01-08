@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('nullDay:daily')->timezone('America/Toronto')->between('9:49', '9:57');
+        $schedule->command('nullDay:daily')->timezone('America/Toronto')->between('9:52', '9:57');
         // $users = User::all();
 
 
