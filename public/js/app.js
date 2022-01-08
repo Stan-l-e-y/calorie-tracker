@@ -34263,7 +34263,9 @@ var render = function () {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _c("label", { attrs: { for: "weight" } }, [_vm._v("Calories")]),
+          _c("label", { attrs: { for: "weight" } }, [
+            _vm._v("Calories (optional)"),
+          ]),
           _vm._v(" "),
           _c("input", {
             directives: [

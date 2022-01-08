@@ -8,7 +8,7 @@
                 <div class="alert" v-if="errors && errors.weight">
                     {{ errors.weight[0] }}
                 </div>
-                <label for="weight">Calories</label>
+                <label for="weight">Calories (optional)</label>
                 <input type="text" v-model="day.calories" />
                 <div class="alert" v-if="errors && errors.calories">
                     {{ errors.calories[0] }}
