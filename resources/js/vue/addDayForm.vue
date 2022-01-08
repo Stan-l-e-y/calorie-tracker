@@ -3,7 +3,7 @@
         <div class="notif">
             <button class="closeBtn" @click.stop="$emit('close')">Close</button>
             <form class="form" @submit.prevent="addDay()">
-                <label for="weight">sWeight</label>
+                <label for="weight">Weight</label>
                 <input type="text" v-model="day.weight" />
                 <div class="alert" v-if="errors && errors.weight">
                     {{ errors.weight[0] }}
