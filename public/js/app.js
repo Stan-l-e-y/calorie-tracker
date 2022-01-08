@@ -34230,7 +34230,7 @@ var render = function () {
           },
         },
         [
-          _c("label", { attrs: { for: "weight" } }, [_vm._v("Weight")]),
+          _c("label", { attrs: { for: "weight" } }, [_vm._v("sWeight")]),
           _vm._v(" "),
           _c("input", {
             directives: [
