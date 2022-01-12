@@ -80,7 +80,7 @@
                   @elseif(!empty($days[$x -1 ])  && empty($todaysEntry[0]))
                   <td class="">
                     <div class=" flex justify-center " >
-                      
+
                       <app :user_id="{{ auth()->id() }}" @reload="weed()" class="cursor-pointer"></app>
                     </div>
                   </td>
@@ -288,23 +288,27 @@
                 <div class="absolute top-20">
                   @php
                     if ($pageNum != 1  && !empty($avgWeight[$week - 2]) && !empty($avgWeight[$week - 1])){
-                      echo ceil($avgWeight[$week - 2]->avg() - $avgWeight[$week - 1]->avg());
+                      // echo ceil($avgWeight[$week - 2]->avg() - $avgWeight[$week - 1]->avg());
+                      echo ceil($avgWeight[$week - 1]->avg() - $avgWeight[$week - 2]->avg());
                     }                
                   @endphp   
                 </div>
                 <div class="absolute top-44">
                   @if (!empty($avgWeight[$week - 1]) && !empty($avgWeight[$week]))
-                  {{ ceil( $avgWeight[$week - 1]->avg() - $avgWeight[$week]->avg()) }}
+                  {{-- {{ ceil( $avgWeight[$week - 1]->avg() - $avgWeight[$week]->avg()) }} --}}
+                  {{ ceil( $avgWeight[$week]->avg() - $avgWeight[$week - 1]->avg()) }}
                   @endif
                 </div>
                 <div class="absolute top-70">
                   @if (!empty($avgWeight[$week]) && !empty($avgWeight[$week + 1]))
-                  {{ ceil( $avgWeight[$week]->avg() - $avgWeight[$week + 1]->avg()) }}
+                  {{-- {{ ceil( $avgWeight[$week]->avg() - $avgWeight[$week + 1]->avg()) }} --}}
+                  {{ ceil($avgWeight[$week + 1]->avg() - $avgWeight[$week]->avg()) }}
                   @endif
                 </div>
                 <div class="absolute top-90">
                   @if (!empty($avgWeight[$week + 1]) && !empty($avgWeight[$week + 2]))
-                  {{ ceil( $avgWeight[$week + 1]->avg() - $avgWeight[$week + 2]->avg()) }}
+                  {{-- {{ ceil( $avgWeight[$week + 1]->avg() - $avgWeight[$week + 2]->avg()) }} --}}
+                  {{ ceil($avgWeight[$week + 2]->avg() - $avgWeight[$week + 1]->avg()) }}
                   @endif
                 </div>
               </div>

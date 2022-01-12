@@ -18,7 +18,6 @@ class DaysController extends Controller
     public function index()
     {
         $user = User::find(auth()->id());
-        // ddd(Carbon::today()->timezone($user->timezone));
 
         $todaysEntry = DaysController::isEntryMade($user->id, $user->timezone);
 
@@ -27,8 +26,6 @@ class DaysController extends Controller
         foreach ($days as $day) {
             if (is_null($day->created_timezone)) {
 
-                // $day->created_at = Carbon::parse($day->created_at)->timezone($user->timezone);
-                // $newDay = Carbon::createFromFormat('Y-m-d H:i:s', $day->created_at, $user->timezone)->setTimezone($user->timezone);
 
                 //to keep UTC time in created do this
                 $time = Carbon::parse($day->created_at)->timezone($user->timezone);
@@ -37,18 +34,7 @@ class DaysController extends Controller
                 $day->created_timezone = $newDay;
                 $day->save();
             }
-
-
-            // $day->created_at = Carbon::parse($day->created_at)->timezone($user->timezone);
-            // $newDay = Carbon::createFromFormat('Y-m-d H:i:s', $day->created_at, $user->timezone)->setTimezone($user->timezone);
-            // ddd($newDay);
-            // ddd($day->created_at->timestamp);
-            // ddd($day->created_at->tzName);
-
-            // $day->save();
         }
-
-
 
         $links = Day::where('user_id', auth()->id())->paginate(27);
 
@@ -78,7 +64,7 @@ class DaysController extends Controller
         });
 
         $avgCal = $calories->chunk(7)->all();
-
+        // header("Refresh:0");
 
         return view('table-show', ['weight' => $weight, 'links' => $links, 'avgWeight' => $avgWeight, 'calories' => $calories, 'avgCal' => $avgCal, 'createdTime' => $createdTime, 'id' => $id, 'todaysEntry' => $todaysEntry, 'days' => $days]);
     }

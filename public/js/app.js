@@ -15637,11 +15637,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: ["user_id"],
   methods: {
-    weed: function weed() {
-      // window.history.go();
+    weed: function weed() {// window.history.go();
       // location.reload();
-      location.reload();
-      location.reload();
+      // location.reload();
+      // location.reload();
     }
   }
 });
@@ -34356,7 +34355,7 @@ var render = function () {
                 ;(_vm.showModal = false), _vm.weed()
               },
               reload: function ($event) {
-                return _vm.$emit("reload")
+                _vm.$emit((_vm.hey = true))
               },
             },
           })

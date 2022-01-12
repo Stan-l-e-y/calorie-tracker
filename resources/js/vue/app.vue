@@ -13,7 +13,7 @@
             :user_id="user_id"
             v-if="showModal"
             @close="(showModal = false), weed()"
-            @reload="$emit('reload')"
+            @reload="$emit((hey = true))"
         />
     </div>
 </template>
@@ -35,8 +35,8 @@ export default {
         weed() {
             // window.history.go();
             // location.reload();
-            location.reload();
-            location.reload();
+            // location.reload();
+            // location.reload();
         },
     },
 };
