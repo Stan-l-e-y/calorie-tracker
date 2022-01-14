@@ -8,9 +8,9 @@
             .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
             .tg .tg-0lax{text-align:left;vertical-align:top}
             </style>
-            <div>
+            {{-- <div>
               <span x-data="{weed: false}"></span>
-            </div>
+            </div> --}}
             <h1 
             class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8"
             >
