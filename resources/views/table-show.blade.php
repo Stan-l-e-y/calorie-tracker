@@ -18,7 +18,7 @@
             @if (isset($_GET['page']))
               {{ $_GET['page'] }}
             @else
-            {{ '1' }}-s
+            {{ '1' }}
             @endif
             </h1>  
             @php
