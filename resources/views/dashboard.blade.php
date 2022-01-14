@@ -6,8 +6,8 @@
         </h2>
         
     </x-slot> --}}
-
-      <h1 class=" mt-5 text-3xl text-center font-bold text-blue-500">Frequently Asked Questions</h1>
+      <h1>weed</h1>
+      <h1 class="mt-5 text-3xl text-center font-bold text-blue-500">Frequently Asked Questions</h1>
       <div x-data="{
         faqs: [
             {
