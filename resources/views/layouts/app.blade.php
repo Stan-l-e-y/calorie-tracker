@@ -35,7 +35,6 @@
             @endif --}}
 
             <!-- Page Content -->
-            <div class="bg-blue-500">hey man</div>
             <main class="flex items-center justify-center flex-col  " >
                 @if (request()->routeIs('dashboard'))
                 {{ $slot }}
