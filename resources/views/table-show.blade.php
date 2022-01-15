@@ -30,11 +30,7 @@
               $secondNum = $pageNum - 1;
               $week = $pageNum + (3 * $secondNum);
             @endphp
-            {{-- {{ ddd(empty($todaysEntry[0])) }} --}}
-              {{-- @foreach ($createdTime as $date)
-                {{ $date }}
-                <br>
-              @endforeach --}}
+
             <div class="flex" id="app" >
               <table class="tg border-collapse relative border rounded-xl ">
               <thead class="">

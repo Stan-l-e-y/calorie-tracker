@@ -20,7 +20,6 @@
 
     </head>
     <body class="font-sans antialiased">
-        <div class="text-blue-500">weed</div>
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
