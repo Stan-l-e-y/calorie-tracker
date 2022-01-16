@@ -36,7 +36,7 @@
               <thead class="">
                 <tr>
                   <th class="tg-0lax"></th>
-                  <th class="px-6 py-3  font-bold tracking-wider ">Day 1s </th>
+                  <th class="px-6 py-3  font-bold tracking-wider ">Day 1 </th>
                   <th class=" px-6 py-3 font-bold   tracking-wider">Day 2</th>
                   <th class=" px-6 py-3  font-bold   tracking-wider">Day 3</th>
                   <th class="t px-6 py-3  font-bold   tracking-wider">Day 4</th>
