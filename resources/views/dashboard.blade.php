@@ -12,7 +12,7 @@
             {
                 id: 1,
                 question: 'What is this site?',
-                answer: 'This is Fitness Tracker! The purpose for this site is for you, the user, to track your daily weight and caloric intake with the built in Table. The Table allows you to make one entry per day, simply enter your weight and caloric intake for the day (optional) and the table will store the information for as long as you need it. You are only allowed to make an entry for the current day; therefore, you will not be able to cheat and enter future data. If you made a mistake in the past or need to check when you made a specific entry, hover over the selected entry and click on it to view/edit your information. To get started, navigate to the Table tab in the navigation bar above ',
+                answer: 'This is Fitness Tracker! The purpose of this site is for you, the user, to track your daily weight and caloric intake with the built in Table. The Table allows you to make one entry per day, simply enter your weight and caloric intake for the day (optional) and the table will store the information for as long as you need it. You are only allowed to make an entry for the current day; therefore, you will not be able to cheat and enter future data. If you made a mistake in the past or need to check when you made a specific entry, hover over the selected entry and click on it to view/edit your information. To get started, navigate to the Table tab in the navigation bar above ',
                 isOpen: false,
                 color600: 'bg-blue-600',
                 color300: 'bg-blue-300'
