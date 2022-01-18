@@ -15574,7 +15574,7 @@ __webpack_require__.r(__webpack_exports__);
         if (response.status == 201) {
           _this.$emit("close");
 
-          axios.get("api/table-show").then(function (response) {
+          axios.get("/table-show").then(function (response) {
             // console.log(response);
             window.location.reload();
           })["catch"](function (error) {

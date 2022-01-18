@@ -42,7 +42,7 @@ export default {
                     if (response.status == 201) {
                         this.$emit("close");
                         axios
-                            .get("api/table-show")
+                            .get("/table-show")
                             .then((response) => {
                                 // console.log(response);
                                 window.location.reload();
