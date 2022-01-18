@@ -20,7 +20,7 @@
 
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen sm:bg-gray-100  ">
             @include('layouts.navigation')
 
             {{-- <!-- Page Heading -->
@@ -35,7 +35,7 @@
             @endif --}}
 
             <!-- Page Content -->
-            <main class="flex items-center justify-center flex-col  " >
+            <main class="flex items-center justify-center flex-col " >
                 @if (request()->routeIs('dashboard'))
                 {{ $slot }}
                 @elseif (request()->routeIs('table-show'))
