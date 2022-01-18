@@ -41,8 +41,14 @@ export default {
                     this.day = {};
                     if (response.status == 201) {
                         this.$emit("close");
-                        window.location.reload();
-                        // this.$emit("reload");
+                        axios
+                            .get("/table-show")
+                            .then((response) => {
+                                window.location.reload();
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
                     }
                 })
                 .catch((error) => {

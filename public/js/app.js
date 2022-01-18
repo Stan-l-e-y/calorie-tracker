@@ -15574,7 +15574,11 @@ __webpack_require__.r(__webpack_exports__);
         if (response.status == 201) {
           _this.$emit("close");
 
-          window.location.reload(); // this.$emit("reload");
+          axios.get("/table-show").then(function (response) {
+            window.location.reload();
+          })["catch"](function (error) {
+            console.log(error);
+          });
         }
       })["catch"](function (error) {
         if (error.response.status == 422) {
