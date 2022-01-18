@@ -15574,9 +15574,7 @@ __webpack_require__.r(__webpack_exports__);
         if (response.status == 201) {
           _this.$emit("close");
 
-          _this.$emit("reload");
-
-          window.location.reload();
+          window.location.reload(); // this.$emit("reload");
         }
       })["catch"](function (error) {
         if (error.response.status == 422) {
@@ -15636,12 +15634,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   props: ["user_id"],
+  mounted: function mounted() {},
   methods: {
-    weed: function weed() {// window.history.go();
-      // location.reload();
-      // location.reload();
-      // location.reload();
-    }
+    test: function test() {}
   }
 });
 
@@ -15809,7 +15804,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_6__["default"]({
   components: {
     App: _vue_app_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     dayView: _vue_dayView_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }
+  },
+  mounted: function mounted() {}
 });
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
@@ -34352,7 +34348,7 @@ var render = function () {
             attrs: { user_id: _vm.user_id },
             on: {
               close: function ($event) {
-                ;(_vm.showModal = false), _vm.weed()
+                ;(_vm.showModal = false), _vm.test()
               },
               reload: function ($event) {
                 _vm.$emit((_vm.hey = true))

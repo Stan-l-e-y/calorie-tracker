@@ -41,8 +41,8 @@ export default {
                     this.day = {};
                     if (response.status == 201) {
                         this.$emit("close");
-                        this.$emit("reload");
                         window.location.reload();
+                        // this.$emit("reload");
                     }
                 })
                 .catch((error) => {

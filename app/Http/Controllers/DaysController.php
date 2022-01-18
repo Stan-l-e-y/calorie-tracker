@@ -94,8 +94,8 @@ class DaysController extends Controller
     {
 
         $attributes = request()->validate([
-            'weight' => 'nullable',
-            'calories' => 'nullable',
+            'weight' => 'nullable|numeric',
+            'calories' => 'nullable|numeric',
             'user_id' => 'required'
         ]);
 
