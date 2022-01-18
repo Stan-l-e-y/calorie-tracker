@@ -8,9 +8,7 @@
             .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
             .tg .tg-0lax{text-align:left;vertical-align:top}
             </style>
-            {{-- <div>
-              <span x-data="{weed: false}"></span>
-            </div> --}}
+
             
             <h1 
             class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8"
@@ -78,14 +76,14 @@
                   <td class="">
                     <div class=" flex justify-center " >
 
-                      <app :user_id="{{ auth()->id() }}" @reload="weed()" class="cursor-pointer"></app>
+                      <app  :user_id="{{ auth()->id() }}" @reload="" class="cursor-pointer"></app>
                     </div>
                   </td>
                   @elseif($x == 0 && empty($days[$x]) && empty($todaysEntry[0]))
                   <td class="">
                     <div class=" flex justify-center " >
                       
-                      <app :user_id="{{ auth()->id() }}" @reload="weed()" class="cursor-pointer"></app>
+                      <app :user_id="{{ auth()->id() }}" @reload="" class="cursor-pointer"></app>
                     </div>
                   </td>
                   @else

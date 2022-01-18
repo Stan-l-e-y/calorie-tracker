@@ -21,6 +21,7 @@ Vue.component("font-awesome-icon", FontAwesomeIcon);
 const app = new Vue({
     el: "#app",
     components: { App, dayView },
+    mounted: function () {},
 });
 
 window.Alpine = Alpine;
