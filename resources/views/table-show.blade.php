@@ -49,6 +49,7 @@
                 <tr class="">
                   <td class="font-bold">Week {{ $week }}</td>
                   @for ($x = 0; $x <= 6; $x++)
+                  {{--  If entry is made, whether null/default or user created... Display grey+ icon or user data --}}
                   @if (!empty($days[$x]))
                   <td class="">
                     <div class=" cursor-pointer hover:text-blue-500">
@@ -72,6 +73,7 @@
                       </div>
                     </div>
                   </td>
+                  {{--  If previous is not empty and todays entry is ... display green+ icon --}}
                   @elseif(!empty($days[$x -1 ])  && empty($todaysEntry[0]))
                   <td class="">
                     <div class=" flex justify-center " >
@@ -92,6 +94,7 @@
                   </td>
                   @endif
                   @endfor
+                  {{-- Weekly info --}}
                   <td class="">
                     <div class="flex flex-col py-2 cursor-pointer hover:text-blue-500">
                       <div class="mb-2">
@@ -279,30 +282,27 @@
 
               </tbody>
               </table>
+              {{-- Weekly averages  --}}
               <div class=" flex relative left-5 ">
                 <div class="absolute top-20">
                   @php
                     if ($pageNum != 1  && !empty($avgWeight[$week - 2]) && !empty($avgWeight[$week - 1])){
-                      // echo ceil($avgWeight[$week - 2]->avg() - $avgWeight[$week - 1]->avg());
                       echo ceil($avgWeight[$week - 1]->avg() - $avgWeight[$week - 2]->avg());
                     }                
                   @endphp   
                 </div>
                 <div class="absolute top-44">
                   @if (!empty($avgWeight[$week - 1]) && !empty($avgWeight[$week]))
-                  {{-- {{ ceil( $avgWeight[$week - 1]->avg() - $avgWeight[$week]->avg()) }} --}}
                   {{ ceil( $avgWeight[$week]->avg() - $avgWeight[$week - 1]->avg()) }}
                   @endif
                 </div>
                 <div class="absolute top-70">
                   @if (!empty($avgWeight[$week]) && !empty($avgWeight[$week + 1]))
-                  {{-- {{ ceil( $avgWeight[$week]->avg() - $avgWeight[$week + 1]->avg()) }} --}}
                   {{ ceil($avgWeight[$week + 1]->avg() - $avgWeight[$week]->avg()) }}
                   @endif
                 </div>
                 <div class="absolute top-90">
                   @if (!empty($avgWeight[$week + 1]) && !empty($avgWeight[$week + 2]))
-                  {{-- {{ ceil( $avgWeight[$week + 1]->avg() - $avgWeight[$week + 2]->avg()) }} --}}
                   {{ ceil($avgWeight[$week + 2]->avg() - $avgWeight[$week + 1]->avg()) }}
                   @endif
                 </div>
