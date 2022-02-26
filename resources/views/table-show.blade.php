@@ -282,28 +282,28 @@
 
               </tbody>
               </table>
-              {{-- Weekly averages  --}}
+              {{-- Difference between weeks based off of weekly average  --}}
               <div class=" flex relative left-5 ">
                 <div class="absolute top-20">
                   @php
                     if ($pageNum != 1  && !empty($avgWeight[$week - 2]) && !empty($avgWeight[$week - 1])){
-                      echo ceil($avgWeight[$week - 1]->avg() - $avgWeight[$week - 2]->avg());
+                      echo $avgWeight[$week - 1]->avg() - $avgWeight[$week - 2]->avg();
                     }                
                   @endphp   
                 </div>
                 <div class="absolute top-44">
                   @if (!empty($avgWeight[$week - 1]) && !empty($avgWeight[$week]))
-                  {{ ceil( $avgWeight[$week]->avg() - $avgWeight[$week - 1]->avg()) }}
+                  {{  $avgWeight[$week]->avg() - $avgWeight[$week - 1]->avg() }}
                   @endif
                 </div>
                 <div class="absolute top-70">
                   @if (!empty($avgWeight[$week]) && !empty($avgWeight[$week + 1]))
-                  {{ ceil($avgWeight[$week + 1]->avg() - $avgWeight[$week]->avg()) }}
+                  {{ $avgWeight[$week + 1]->avg() - $avgWeight[$week]->avg() }}
                   @endif
                 </div>
                 <div class="absolute top-90">
                   @if (!empty($avgWeight[$week + 1]) && !empty($avgWeight[$week + 2]))
-                  {{ ceil($avgWeight[$week + 2]->avg() - $avgWeight[$week + 1]->avg()) }}
+                  {{ $avgWeight[$week + 2]->avg() - $avgWeight[$week + 1]->avg() }}
                   @endif
                 </div>
               </div>
