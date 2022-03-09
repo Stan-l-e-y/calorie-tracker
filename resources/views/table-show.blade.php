@@ -303,7 +303,7 @@
                 </div>
                 <div class="absolute top-90">
                   @if (!empty($avgWeight[$week + 1]) && !empty($avgWeight[$week + 2]))
-                  {{ $avgWeight[$week + 2]->avg() - $avgWeight[$week + 1]->avg() }}
+                  {{ number_format((float)$avgWeight[$week + 2]->avg() - $avgWeight[$week + 1]->avg(), 2, '.', '') }}
                   @endif
                 </div>
               </div>
