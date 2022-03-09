@@ -287,18 +287,18 @@
                 <div class="absolute top-20">
                   @php
                     if ($pageNum != 1  && !empty($avgWeight[$week - 2]) && !empty($avgWeight[$week - 1])){
-                      echo $avgWeight[$week - 1]->avg() - $avgWeight[$week - 2]->avg();
+                      echo number_format((float)$avgWeight[$week - 1]->avg() - $avgWeight[$week - 2]->avg(), 2, '.', '');
                     }                
                   @endphp   
                 </div>
                 <div class="absolute top-44">
                   @if (!empty($avgWeight[$week - 1]) && !empty($avgWeight[$week]))
-                  {{  $avgWeight[$week]->avg() - $avgWeight[$week - 1]->avg() }}
+                  {{  number_format((float)$avgWeight[$week]->avg() - $avgWeight[$week - 1]->avg(), 2, '.', '') }}
                   @endif
                 </div>
                 <div class="absolute top-70">
                   @if (!empty($avgWeight[$week]) && !empty($avgWeight[$week + 1]))
-                  {{ $avgWeight[$week + 1]->avg() - $avgWeight[$week]->avg() }}
+                  {{ number_format((float)$avgWeight[$week + 1]->avg() - $avgWeight[$week]->avg(), 2, '.', '') }}
                   @endif
                 </div>
                 <div class="absolute top-90">
